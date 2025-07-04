@@ -13,7 +13,7 @@ protected:
 
 public:
     Transacao(int id, const std::string& data, double valorTotal);
-    virtual ~Transacao() = default; // Virtual destructor for polymorphism
+    virtual ~Transacao() = default;
 
     // Getters
     int getId() const;
@@ -25,7 +25,7 @@ public:
     void setValorTotal(double valorTotal);
     void setId(int id) { this->id = id; }
 
-    virtual void mostrarResumo() const = 0; // Pure virtual function for polymorphism
+    virtual void mostrarResumo() const = 0; // polimorfismo para mostrarResumo
 };
 
 #endif // TRANSACAO_H

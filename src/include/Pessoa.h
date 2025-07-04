@@ -12,7 +12,7 @@ protected:
 
 public:
     Pessoa(int id, const std::string& nome, const std::string& endereco, const std::string& telefone);
-    virtual ~Pessoa() = default; // Virtual destructor for polymorphism
+    virtual ~Pessoa() = default;
 
     // Getters
     int getId() const;

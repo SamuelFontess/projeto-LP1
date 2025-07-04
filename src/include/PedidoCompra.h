@@ -24,7 +24,7 @@ public:
     void setFornecedor(const Fornecedor& fornecedor);
     void adicionarItem(const ItemPedido& item);
 
-    void mostrarResumo() const override; // Polymorphism
+    void mostrarResumo() const override; // Polimorfismo para mostrarResumo
     std::string getNome() const { return "Pedido de Compra ID: " + std::to_string(getId()); } // Adicionado para listarItens
 };
 

@@ -34,8 +34,8 @@ int main() {
 
     // --- Testando CRUD para Fornecedor ---
     std::cout << "\n--- CRUD Fornecedor ---" << std::endl;
-    Fornecedor f1(0, "Fornecedor A", "contatoA@email.com");
-    Fornecedor f2(0, "Fornecedor B", "contatoB@email.com");
+    Fornecedor f1(0, "Fornecedor A", "contatoA@gmail.com");
+    Fornecedor f2(0, "Fornecedor B", "contatoB@gmail.com");
 
     gerenciadorFornecedores.adicionar(f1);
     gerenciadorFornecedores.adicionar(f2);
@@ -103,8 +103,8 @@ int main() {
 
     // --- Testando CRUD para Funcionario ---
     std::cout << "\n--- CRUD Funcionario ---" << std::endl;
-    Funcionario func1(0, "Joao Silva", "Rua A, 123", "1111-1111", "Gerente", 5000.0);
-    Funcionario func2(0, "Maria Souza", "Rua B, 456", "2222-2222", "Vendedor", 2500.0);
+    Funcionario func1(0, "Joao Silva", "Rua A, 123", "91111-1111", "Gerente", 5000.0);
+    Funcionario func2(0, "Maria Souza", "Rua B, 456", "92222-2222", "Vendedor", 2500.0);
 
     gerenciadorFuncionarios.adicionar(func1);
     gerenciadorFuncionarios.adicionar(func2);
@@ -131,8 +131,8 @@ int main() {
 
     // --- Testando CRUD para Cliente ---
     std::cout << "\n--- CRUD Cliente ---" << std::endl;
-    Cliente cli1(0, "Carlos Lima", "Av C, 789", "3333-3333", "carlos@email.com");
-    Cliente cli2(0, "Ana Paula", "Av D, 101", "4444-4444", "ana@email.com");
+    Cliente cli1(0, "Carlos Lima", "Av C, 789", "3333-3333", "carlos@gmail.com");
+    Cliente cli2(0, "Ana Paula", "Av D, 101", "4444-4444", "ana@gmail.com");
 
     gerenciadorClientes.adicionar(cli1);
     gerenciadorClientes.adicionar(cli2);
@@ -143,7 +143,7 @@ int main() {
         Cliente cli_busca = gerenciadorClientes.buscar(1);
         std::cout << "Cliente encontrado (ID 1): " << cli_busca.getNome() << std::endl;
 
-        cli_busca.setEmail("carlos.lima@email.com");
+        cli_busca.setEmail("carlos.lima@gmail.com");
         gerenciadorClientes.atualizar(cli_busca);
         std::cout << "Cliente atualizado." << std::endl;
         listarItens(gerenciadorClientes.listarTodos());
@@ -160,7 +160,7 @@ int main() {
     // --- Testando CRUD para PedidoCompra ---
     std::cout << "\n--- CRUD PedidoCompra ---" << std::endl;
     // Re-adicionar fornecedor e produto para o pedido de compra
-    Fornecedor f_pedido(0, "Fornecedor Pedido", "contato_pedido@email.com");
+    Fornecedor f_pedido(0, "Fornecedor Pedido", "contato_pedido@gmail.com");
     gerenciadorFornecedores.adicionar(f_pedido);
     Produto p_pedido(0, "Teclado", 150.0, 50, cat1, f_pedido, loc1);
     gerenciadorProdutos.adicionar(p_pedido);
