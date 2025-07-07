@@ -1,4 +1,3 @@
-
 CXX = g++
 CXXFLAGS = -std=c++11 -Isrc/include
 LDFLAGS =
@@ -9,21 +8,20 @@ BINDIR = .
 
 SOURCES = $(wildcard $(SRCDIR)/*.cpp)
 OBJECTS = $(patsubst $(SRCDIR)/%.cpp,$(OBJDIR)/%.o,$(SOURCES))
-TARGET = $(BINDIR)/estoque_app
+TARGET = estoque_app.exe
 
 all: $(TARGET)
 
 $(TARGET): $(OBJECTS)
-	@mkdir -p $(@D)
+	if not exist $(BINDIR) mkdir $(BINDIR)
 	$(CXX) $(LDFLAGS) $(OBJECTS) -o $@
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp
-	@mkdir -p $(@D)
+	if not exist $(OBJDIR) mkdir $(OBJDIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
-	$(RM) -r $(OBJDIR) $(TARGET)
+	-if exist $(OBJDIR) rmdir /s /q $(OBJDIR)
+	-if exist $(TARGET) del $(TARGET)
 
 .PHONY: all clean
-
-
