@@ -1,5 +1,3 @@
-
-```mermaid
 classDiagram
     class Pessoa {
         #int id
@@ -150,6 +148,5 @@ classDiagram
         +listarTodos() vector~T~
     }
 
-```
 
 
