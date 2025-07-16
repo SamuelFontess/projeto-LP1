@@ -46,11 +46,16 @@ int main() {
 
     try {
         Fornecedor f_busca = gerenciadorFornecedores.buscar(1);
-        std::cout << "Fornecedor encontrado (ID 1): " << f_busca.getNome() << std::endl;
+        std::cout << "Fornecedor encontrado (ID 1): " << f_busca.getNome()
+              << ", Contato: " << f_busca.getContato() << std::endl;
 
         f_busca.setNome("Fornecedor A Atualizado");
+        f_busca.setContato("novoemail@exemplo.com");
         gerenciadorFornecedores.atualizar(f_busca);
-        std::cout << "Fornecedor atualizado." << std::endl;
+        std::cout << "Fornecedor atualizado (ID 1): "
+              << f_busca.getNome() << ", Contato: "
+              << f_busca.getContato() << std::endl;
+
         listarItens(gerenciadorFornecedores.listarTodos());
 
         gerenciadorFornecedores.remover(2);
@@ -81,20 +86,42 @@ int main() {
     gerenciadorProdutos.adicionar(p1);
     gerenciadorProdutos.adicionar(p2);
     std::cout << "Produtos adicionados." << std::endl;
-    listarItens(gerenciadorProdutos.listarTodos());
+    
+    std::cout << "Listando Produtos:" << std::endl;
+    for (const auto& p : gerenciadorProdutos.listarTodos()) {
+        std::cout << "ID: " << p.getId() << ", Nome: " << p.getNome()
+              << ", Preço: R$" << p.getPreco()
+              << ", Quantidade: " << p.getQuantidade()
+              << ", Categoria: " << p.getCategoria().getNome()
+              << ", Fornecedor: " << p.getFornecedor().getNome()
+              << ", Localização: Corredor " << p.getLocalizacao().getCorredor()
+              << ", Prateleira " << p.getLocalizacao().getPrateleira()
+              << std::endl;
+    }
 
     try {
         Produto p_busca = gerenciadorProdutos.buscar(1);
-        std::cout << "Produto encontrado (ID 1): " << p_busca.getNome() << std::endl;
+        std::cout << "Produto encontrado (ID 1): " << p_busca.getNome()
+              << ", Preço: R$" << p_busca.getPreco() << std::endl;
 
         p_busca.setPreco(55.0);
         gerenciadorProdutos.atualizar(p_busca);
-        std::cout << "Produto atualizado." << std::endl;
-        listarItens(gerenciadorProdutos.listarTodos());
+        std::cout << "Produto atualizado (ID " << p_busca.getId() << "): "
+              << p_busca.getNome() << ", Novo Preço: R$" << p_busca.getPreco() << std::endl;
+
+        std::cout << "Listando Produtos após atualização:" << std::endl;
+    for (const auto& p : gerenciadorProdutos.listarTodos()) {
+        std::cout << "ID: " << p.getId() << ", Nome: " << p.getNome()
+                  << ", Preço: R$" << p.getPreco() << std::endl;
+    }
 
         gerenciadorProdutos.remover(2);
         std::cout << "Produto removido (ID 2)." << std::endl;
-        listarItens(gerenciadorProdutos.listarTodos());
+        
+        std::cout << "Listando Produtos após remoção:" << std::endl;
+    for (const auto& p : gerenciadorProdutos.listarTodos()) {
+        std::cout << "ID: " << p.getId() << ", Nome: " << p.getNome() << std::endl;
+    }
 
         gerenciadorProdutos.buscar(99);
     } catch (const std::runtime_error& e) {
@@ -109,20 +136,46 @@ int main() {
     gerenciadorFuncionarios.adicionar(func1);
     gerenciadorFuncionarios.adicionar(func2);
     std::cout << "Funcionarios adicionados." << std::endl;
-    listarItens(gerenciadorFuncionarios.listarTodos());
+    
+    std::cout << "Listando Funcionarios:" << std::endl;
+    for (const auto& f : gerenciadorFuncionarios.listarTodos()) {
+        std::cout << "ID: " << f.getId()
+              << ", Nome: " << f.getNome()
+              << ", Cargo: " << f.getCargo()
+              << ", Salário: R$" << f.getSalario() << std::endl;
+    }
 
     try {
         Funcionario func_busca = gerenciadorFuncionarios.buscar(1);
-        std::cout << "Funcionario encontrado (ID 1): " << func_busca.getNome() << std::endl;
+        std::cout << "Funcionario encontrado (ID 1): " << func_busca.getNome()
+              << ", Cargo: " << func_busca.getCargo()
+              << ", Salário: R$" << func_busca.getSalario() << std::endl;
 
         func_busca.setSalario(5500.0);
         gerenciadorFuncionarios.atualizar(func_busca);
-        std::cout << "Funcionario atualizado." << std::endl;
-        listarItens(gerenciadorFuncionarios.listarTodos());
+
+        std::cout << "Funcionario atualizado (ID " << func_busca.getId() << "): "
+              << func_busca.getNome()
+              << ", Novo Salário: R$" << func_busca.getSalario() << std::endl;
+
+        std::cout << "Listando Funcionarios após atualização:" << std::endl;
+    for (const auto& f : gerenciadorFuncionarios.listarTodos()) {
+        std::cout << "ID: " << f.getId()
+                  << ", Nome: " << f.getNome()
+                  << ", Cargo: " << f.getCargo()
+                  << ", Salário: R$" << f.getSalario() << std::endl;
+    }
 
         gerenciadorFuncionarios.remover(2);
         std::cout << "Funcionario removido (ID 2)." << std::endl;
-        listarItens(gerenciadorFuncionarios.listarTodos());
+
+        std::cout << "Listando Funcionarios após remoção:" << std::endl;
+    for (const auto& f : gerenciadorFuncionarios.listarTodos()) {
+        std::cout << "ID: " << f.getId()
+                  << ", Nome: " << f.getNome()
+                  << ", Cargo: " << f.getCargo()
+                  << ", Salário: R$" << f.getSalario() << std::endl;
+    }
 
         gerenciadorFuncionarios.buscar(99);
     } catch (const std::runtime_error& e) {
@@ -137,20 +190,43 @@ int main() {
     gerenciadorClientes.adicionar(cli1);
     gerenciadorClientes.adicionar(cli2);
     std::cout << "Clientes adicionados." << std::endl;
-    listarItens(gerenciadorClientes.listarTodos());
+
+    std::cout << "Listando Clientes:" << std::endl;
+    for (const auto& c : gerenciadorClientes.listarTodos()) {
+        std::cout << "ID: " << c.getId()
+              << ", Nome: " << c.getNome()
+              << ", Email: " << c.getEmail()
+              << ", Telefone: " << c.getTelefone() << std::endl;
+    }
 
     try {
         Cliente cli_busca = gerenciadorClientes.buscar(1);
-        std::cout << "Cliente encontrado (ID 1): " << cli_busca.getNome() << std::endl;
+        std::cout << "Cliente encontrado (ID 1): " << cli_busca.getNome()
+                  << ", Email: " << cli_busca.getEmail() << std::endl;
 
         cli_busca.setEmail("carlos.lima@gmail.com");
         gerenciadorClientes.atualizar(cli_busca);
-        std::cout << "Cliente atualizado." << std::endl;
-        listarItens(gerenciadorClientes.listarTodos());
+
+        std::cout << "Cliente atualizado (ID " << cli_busca.getId() << "): "
+              << cli_busca.getNome()
+              << ", Novo Email: " << cli_busca.getEmail() << std::endl;
+
+        std::cout << "Listando Clientes após atualização:" << std::endl;
+        for (const auto& c : gerenciadorClientes.listarTodos()) {
+            std::cout << "ID: " << c.getId()
+                  << ", Nome: " << c.getNome()
+                  << ", Email: " << c.getEmail() << std::endl;
+        }
 
         gerenciadorClientes.remover(2);
         std::cout << "Cliente removido (ID 2)." << std::endl;
-        listarItens(gerenciadorClientes.listarTodos());
+
+        std::cout << "Listando Clientes após remoção:" << std::endl;
+        for (const auto& c : gerenciadorClientes.listarTodos()) {
+            std::cout << "ID: " << c.getId()
+                  << ", Nome: " << c.getNome()
+                  << ", Email: " << c.getEmail() << std::endl;
+        }
 
         gerenciadorClientes.buscar(99);
     } catch (const std::runtime_error& e) {
@@ -162,6 +238,7 @@ int main() {
     // Re-adicionar fornecedor e produto para o pedido de compra
     Fornecedor f_pedido(0, "Fornecedor Pedido", "contato_pedido@gmail.com");
     gerenciadorFornecedores.adicionar(f_pedido);
+
     Produto p_pedido(0, "Teclado", 150.0, 50, cat1, f_pedido, loc1);
     gerenciadorProdutos.adicionar(p_pedido);
 
@@ -176,21 +253,31 @@ int main() {
     t_pc1->mostrarResumo();
 
     try {
-        PedidoCompra pc_busca = gerenciadorPedidosCompra.buscar(1);
-        std::cout << "Pedido de Compra encontrado (ID 1)." << std::endl;
+    PedidoCompra pc_busca = gerenciadorPedidosCompra.buscar(1);
+    std::cout << "Pedido de Compra encontrado (ID " << pc_busca.getId() << ")." << std::endl;
 
-        pc_busca.setValorTotal(250.0);
-        gerenciadorPedidosCompra.atualizar(pc_busca);
-        std::cout << "Pedido de Compra atualizado." << std::endl;
+    pc_busca.setValorTotal(250.0);
+    gerenciadorPedidosCompra.atualizar(pc_busca);
 
-        gerenciadorPedidosCompra.remover(1);
-        std::cout << "Pedido de Compra removido (ID 1)." << std::endl;
-        std::cout << "Listando Pedidos de Compra:" << std::endl;
-        listarItens(gerenciadorPedidosCompra.listarTodos());
+    std::cout << "Pedido de Compra atualizado (ID " << pc_busca.getId() << "): "
+              << "Novo valor total: R$" << pc_busca.getValorTotal() << std::endl;
 
-        gerenciadorPedidosCompra.buscar(99);
+    std::cout << "Listando Pedidos de Compra após atualização:" << std::endl;
+    for (const auto& p : gerenciadorPedidosCompra.listarTodos()) {
+        p.mostrarResumo();
+    }
+
+    gerenciadorPedidosCompra.remover(1);
+    std::cout << "Pedido de Compra removido (ID 1)." << std::endl;
+
+    std::cout << "Listando Pedidos de Compra após remoção:" << std::endl;
+    if (gerenciadorPedidosCompra.listarTodos().empty()) {
+        std::cout << "Nenhum pedido para listar." << std::endl;
+    }
+
+    gerenciadorPedidosCompra.buscar(99); // teste de erro
     } catch (const std::runtime_error& e) {
-        std::cerr << "Erro: " << e.what() << std::endl;
+    std::cerr << "Erro: " << e.what() << std::endl;
     }
 
     return 0;
